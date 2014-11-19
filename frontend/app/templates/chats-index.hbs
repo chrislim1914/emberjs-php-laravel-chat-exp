@@ -1,0 +1,24 @@
+<div class="row">
+  &nbsp;
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    {{textarea value=newMessage placeholder="what's happening?"}}
+    <button {{action 'sendMessage'}} class="button small">send</button>
+  </div>
+</div>
+{{#each chat in arrangedContent}}
+<div class="row" style="overflow: auto;">
+<div class="panel">
+  <div class="row">
+  <div class="small-2 columns">
+    {{gravatar-image email=chat.user.email alt=chat.user.username size="48"}}
+  </div>
+  <div class="small-10 columns">
+    <h5>{{chat.user.username}}</h5>
+    {{chat.message}}
+  </div>
+</div>
+</div>
+</div>
+{{/each}}

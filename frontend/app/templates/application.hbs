@@ -6,21 +6,17 @@
 			</section>
 			<section class="middle tab-bar-section">
 				<div class="title">
-					<h1>Piav App</h1>
+					<h1 {{action 'goToChat'}}>Rapid Chat</h1>
 				</div>
-			</section>
-			<section class="right-small">
-				<a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
 			</section>
 		</nav>
 		<aside class="left-off-canvas-menu">
 			<ul class="off-canvas-list">
 				<li><label>Menu</label></li>
 				<li>{{link-to 'Home' 'index'}}</li>
-				<li>{{link-to 'User' 'users-index'}}</li>
-				<li>{{link-to 'Event' 'events-index'}}</li>
-
+				<li>{{link-to 'Chat' 'chats-index'}}</li>
 				<li><label>Profile</label></li>
+				<li>{{link-to 'About' 'about'}}</li>
 				{{#if session.isAuthenticated}}
 					<li>{{link-to 'Profile' 'profile'}}</li>
 					<li><a {{action 'invalidateSession'}}>Logout</a></li>
@@ -30,12 +26,6 @@
 				{{/if}}
 			</ul>
     	</aside>
-		<aside class="right-off-canvas-menu">
-			<ul class="off-canvas-list">
-				<li><label>Users</label></li>
-				<li><a href="#">...</a></li>
-			</ul>
-		</aside>
 		<section id="mainSectionId" class="main-section">
 			{{outlet}}
 		</section>

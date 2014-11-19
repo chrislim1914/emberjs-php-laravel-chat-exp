@@ -57,7 +57,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'piavapp',
+			'database'  => 'chatapp',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
@@ -73,7 +73,7 @@ return array(
 			'password'  => 'helloworld',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',	
+			'prefix'    => '',
 		),
 
 		'mysql_remote_1freehosting' => array(
@@ -84,7 +84,7 @@ return array(
 			'password'  => 'helloworld1',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',	
+			'prefix'    => '',
 		),
 
 		'pgsql' => array(

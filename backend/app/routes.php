@@ -23,9 +23,9 @@ Route::group(['prefix'=>'api/v1'], function() {
 });
 Route::group(['prefix'=>'api/v1', 'before'=>'auth.token'], function() {
 	Route::resource('users', 'UserController', ['only'=>['index', 'show', 'destroy']]);
+	Route::resource('chats', 'ChatController', ['only'=>['index', 'show', 'store', 'update']]);
 });
 
 Route::get('/authtest', ['before' => 'auth.token', function() {
 	return Response::make('Auth works');
 }]);
-

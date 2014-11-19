@@ -14,7 +14,7 @@
 App::before(function($request)
 {
 	header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE, UPDATE');
+    header('Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE, PUT, UPDATE');
     header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-Request-With, X-Auth-Token, X-User-Id');
     header('Access-Control-Allow-Credentials: true');
 });
@@ -57,7 +57,7 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
-Route::filter('auth.token', function() 
+Route::filter('auth.token', function()
 {
 	if (!TokenAuth::check(Request::header('X-Auth-Token'))) {
 		return Response::make("please login", 401);
