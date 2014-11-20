@@ -4,7 +4,11 @@
 <div class="row">
   <div class="small-12 columns">
     {{textarea value=newMessage placeholder="what's happening?"}}
-    <button {{action 'sendMessage'}} class="button small">send</button>
+    <div class="progress">
+      <span class="meter" {{bind-attr style=percentStyle}}></span>
+    </div>
+    <button {{action 'sendMessage'}} {{bind-attr class=waitingStyle}}>send</button>
+    <br>
     {{#if isPolling}}
       <img src="assets/ajax-loader.gif" />
     {{/if}}
@@ -14,10 +18,10 @@
 <div style='width: 100%; max-width: 100%; height:100%; overflow: auto'>
   {{#each chat in arrangedContent}}
   <div class="row">
-    <div class="small-1 columns">
+    <div class="small-2 columns">
       {{gravatar-image email=chat.user.email alt=chat.user.username size="48"}}
     </div>
-    <div class="small-9 columns">
+    <div class="small-10 columns">
       <h5>{{chat.user.username}}</h5>
       {{chat.message}}
     </div>

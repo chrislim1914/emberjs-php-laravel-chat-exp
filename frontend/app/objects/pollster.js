@@ -1,9 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Object.extend({
+  seconds : 10,
   interval: function() {
-    return 10000; // Time between polls (in ms)
-  }.property().readOnly(),
+    return this.get('seconds')*1000; // Time between polls (in ms)
+  }.property('seconds').readOnly(),
 
   // Schedules the function `f` to be executed every `interval` time.
   schedule: function(f) {
