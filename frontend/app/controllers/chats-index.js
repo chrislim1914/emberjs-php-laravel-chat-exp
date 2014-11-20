@@ -5,9 +5,6 @@ export default Ember.ArrayController.extend({
   sortAscending  : false,
   newMessage     : '',
   isPolling      : false,
-  lastMessage    : function() {
-    return this.get('arrangedContent.first');
-  }.property('arrangedContent.@each'),
   actions: {
     sendMessage: function() {
       var self = this;

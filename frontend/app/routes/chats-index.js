@@ -24,6 +24,12 @@ export default Em.Route.extend(AuthenticatedRouteMixin, {
 	},
 	doPoll: function() {
 		var ctrl = this.controllerFor('chats-index');
+		if (ctrl.get('content.length')>150) {
+			this.store.unloadAll('chat');
+			ctrl.set('isPolling', false);
+			this.store.find('chat');
+			return;
+		}
 		if (ctrl.get('isPolling')) {
 			return;
 		} else {
@@ -32,6 +38,7 @@ export default Em.Route.extend(AuthenticatedRouteMixin, {
 			this.store.find('chat', { pollDate : firstObject.get('created_at')}).then(function(chats) {
 				ctrl.set('isPolling', false);
 			},function(reason) {
+				ctrl.set('isPolling', false);
 				console.log(reason);
 			});
 		}

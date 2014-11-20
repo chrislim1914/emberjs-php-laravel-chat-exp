@@ -6,7 +6,7 @@ class ChatController extends BaseController {
 		if ($pollDate) {
 			$date = strtotime($pollDate);
 			$datetime = date('Y-m-d H:i:s', $date);
-			$chats = Chat::where('created_at', '>', $datetime)->get();
+			$chats = Chat::where('created_at', '>', $datetime)->take(20)->get();
 			$users = [];
 			foreach($chats as $chat) {
 				$chat->user = $chat->user_id;
@@ -17,7 +17,7 @@ class ChatController extends BaseController {
 			sleep(2);
 			return Response::json(['chats'=>$chats, 'users'=>$users]);
 		}
-		$chats = Chat::orderBy('created_at', 'DESC')->take(10)->get();
+		$chats = Chat::orderBy('created_at', 'DESC')->take(20)->get();
 		$users = [];
 		foreach($chats as $chat) {
 			$chat->user = $chat->user_id;

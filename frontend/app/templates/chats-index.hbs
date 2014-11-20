@@ -9,21 +9,20 @@
       <img src="assets/ajax-loader.gif" />
     {{/if}}
   </div>
+  <hr>
 </div>
-<div style="overflow-y: scroll">
+<div style='width: 100%; max-width: 100%; height:100%; overflow: auto'>
   {{#each chat in arrangedContent}}
   <div class="row">
-    <div class="panel">
-      <div class="row">
-        <div class="small-2 columns">
-          {{gravatar-image email=chat.user.email alt=chat.user.username size="48"}}
-        </div>
-        <div class="small-10 columns">
-          <h5>{{chat.user.username}}</h5>
-          {{chat.message}}
-        </div>
-      </div>
+    <div class="small-1 columns">
+      {{gravatar-image email=chat.user.email alt=chat.user.username size="48"}}
     </div>
+    <div class="small-9 columns">
+      <h5>{{chat.user.username}}</h5>
+      {{chat.message}}
+    </div>
+    <br><br>
+    <hr>
   </div>
   {{/each}}
 </div>
