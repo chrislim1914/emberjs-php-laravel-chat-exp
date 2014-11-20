@@ -4,6 +4,7 @@ export default Ember.ArrayController.extend({
   sortProperties : ['created_at'],
   sortAscending  : false,
   newMessage     : '',
+  isPolling      : false,
   lastMessage    : function() {
     return this.get('arrangedContent.first');
   }.property('arrangedContent.@each'),

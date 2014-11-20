@@ -5,8 +5,8 @@
   <div class="small-12 columns">
     {{textarea value=newMessage placeholder="what's happening?"}}
     <button {{action 'sendMessage'}} class="button small">send</button>
-    {{#if polling}}
-      Loading...
+    {{#if isPolling}}
+      <img src="assets/ajax-loader.gif" />
     {{/if}}
   </div>
 </div>

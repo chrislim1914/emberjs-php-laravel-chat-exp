@@ -9,9 +9,7 @@ export default Em.Route.extend(AuthenticatedRouteMixin, {
 		if (Em.isNone(this.get('pollster'))) {
 			this.set('pollster', Pollster.create({
 				onPoll: function() {
-					self.toggleProperty('polling');
-					controller.set('polling', self.get('polling'));
-					console.log('polling... '+self.get('polling'));
+					self.doPoll();
 				}
 			}));
 		}
@@ -23,5 +21,19 @@ export default Em.Route.extend(AuthenticatedRouteMixin, {
 	},
 	deactivate: function() {
 		this.get('pollster').stop();
+	},
+	doPoll: function() {
+		var ctrl = this.controllerFor('chats-index');
+		if (ctrl.get('isPolling')) {
+			return;
+		} else {
+			ctrl.set('isPolling', true);
+			var firstObject = ctrl.get('arrangedContent.firstObject');
+			this.store.find('chat', { pollDate : firstObject.get('created_at')}).then(function(chats) {
+				ctrl.set('isPolling', false);
+			},function(reason) {
+				console.log(reason);
+			});
+		}
 	}
 });

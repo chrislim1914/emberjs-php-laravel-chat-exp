@@ -2,7 +2,22 @@
 
 class ChatController extends BaseController {
 	public function index()	{
-		$chats = Chat::get();
+		$pollDate = Input::get('pollDate');
+		if ($pollDate) {
+			$date = strtotime($pollDate);
+			$datetime = date('Y-m-d H:i:s', $date);
+			$chats = Chat::where('created_at', '>', $datetime)->get();
+			$users = [];
+			foreach($chats as $chat) {
+				$chat->user = $chat->user_id;
+				$user = User::find($chat->user_id);
+				array_push($users, $user);
+				unset($chat->user_id);
+			}
+			sleep(2);
+			return Response::json(['chats'=>$chats, 'users'=>$users]);
+		}
+		$chats = Chat::orderBy('created_at', 'DESC')->take(10)->get();
 		$users = [];
 		foreach($chats as $chat) {
 			$chat->user = $chat->user_id;
